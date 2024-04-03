@@ -23,39 +23,39 @@ Kui kasutaja sisestab õigesti, kuvatakse kulunud aeg. Kui mitte, läheb mäng p
   
 
 # Klassid ja meetodid
-- Main:
+- Klass Main:
   Programmi käivitamine ja kasutajaliides.
-- sonanetist:
+- Klass sonanetist:
   Veebilehelt suvalise sõna laadimine.
 
-Olulisemad meetodid: main(), valisuvasona()
-
-- sonanetist:
-    Veebilehelt suvalise sõna laadimine.
-  
-- valisuvasona()
+- Meetod main():
+    Käivitab programmi ja on liides mängija ja programmi vahel.
+- Meetod valisuvasona():
     Loeb failist sissse kõik sõnad ja genereerib juhuarvu, et listist suvaline sõna tagastada.
 
 
 # Protsess
 
-Etapp 1.1 otsustati typer stiilis mängu kasuks ja leiti, et graafiline pool võiks olla lauatenniseteemaline.
-Etapp 1.2 kirjutati valmis algne programm, mis oli suuteline valima suvalise sõna ja käskima selle mängijal kirjutada, kiirust samal ajal mõõtes.
-Etapp 1.3 testiti programmi ja lisati mõningad funktsionaalsused (nt while loop ja mängu lõpetamine), et see rühmatöö nr 2 käigus valmivasse programmi võimalikult hästi implementeeruks.
+Etapp 1.1 otsustati typer stiilis mängu kasuks ja leiti, et graafiline pool võiks olla lauatenniseteemaline.<br />
+<br />
+Etapp 1.2 kirjutati valmis algne programm, mis oli suuteline valima suvalise sõna ja käskima selle mängijal kirjutada, kiirust samal ajal mõõtes.<br />
+<br />
+Etapp 1.3 testiti programmi ja lisati mõningad funktsionaalsused (nt while loop ja mängu lõpetamine), et see rühmatöö nr 2 käigus valmivasse programmi võimalikult hästi implementeeruks.<br />
+<br />
 
-Etapp 2.1 luuakse 2D graafiline liides, et mäng konsoolist välja viia ja mängija jaoks huvitavamaks teha.
+Etapp 2.1 luuakse 2D graafiline liides, et mäng konsoolist välja viia ja mängija jaoks huvitavamaks teha.<br />
 
 
 # Rühmaliikmete panus
 Idee väljatöötamine ja algse tegevuskava plaanimine ~1.5 tundi.
 
-Markus Viks:
-Projekti kirjelduse kirjutamine ja viimistlemine ~1 tund.
-Lisafunktsionaalsuste programmeerimine ja katsetamine ~30 min.
+- Markus Viks:<br />
+Projekti kirjelduse kirjutamine ja viimistlemine ~1 tund.<br />
+Lisafunktsionaalsuste programmeerimine ja katsetamine ~30 min.<br />
 Testimine ~45 minutit.
 
-Tristan Laur:
-Algse programmi kirjutamine ~3 tundi.
+- Tristan Laur:<br />
+Algse programmi kirjutamine ~3 tundi.<br />
 Githubi repo loomine.
 
 # Probleemid

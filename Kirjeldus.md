@@ -17,8 +17,9 @@ Kui kasutaja sisestab õigesti, kuvatakse kulunud aeg. Kui mitte, läheb mäng p
 
 # Klassid ja olulisemad meetodid:
 - Main:
-
-Eesmärk: Programmi käivitamine ja kasutajaliides.
+  Programmi käivitamine ja kasutajaliides.
+- sonanetist:
+  Veebilehelt suvalise sõna laadimine.
 
 Olulisemad meetodid: main(), valisuvasona()
 

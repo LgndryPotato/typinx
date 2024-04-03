@@ -16,10 +16,10 @@ Kui kasutaja sisestab õigesti, kuvatakse kulunud aeg. Kui mitte, läheb mäng p
 
 # Programmi käivitamine IntelliJ's
 - Jsoup library lisamine
-  1. Laadige repos olev .jar fail IntelliJ projekti root kausta.
-  2. Paremklõpsake .jar failil vasakpoolse failibrauseri aknas IntelliJ's
-  3. Valige "Add as library"
-  4. Kui ikka ei toimi: 📧 markus.viks@ut.ee
+  1) Laadige repos olev .jar fail IntelliJ projekti root kausta.
+  2) Paremklõpsake .jar failil vasakpoolse failibrauseri aknas IntelliJ's
+  3) Valige "Add as library"
+  4) Kui ikka ei toimi: 📧 markus.viks@ut.ee
   
 
 # Klassid ja meetodid

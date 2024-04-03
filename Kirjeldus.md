@@ -15,6 +15,7 @@ Kasutaja peab võimalikult kiiresti sisestama oodatava sõna.
 Kui kasutaja sisestab õigesti, kuvatakse kulunud aeg. Kui mitte, läheb mäng praegu edasi. Järgmises etapis kaotab mängija valesti kirjutatud sõna eest punkti.
 
 # Programmi käivitamine IntelliJ's
+- Alla tuleb laadida ja projekti paigutada mõlemad .java failid
 - Jsoup library lisamine
   1. Laadige repos olev .jar fail IntelliJ projekti root kausta.
   2. Paremklõpsake .jar failil vasakpoolse failibrauseri aknas IntelliJ's

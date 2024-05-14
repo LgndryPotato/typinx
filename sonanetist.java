@@ -1,4 +1,4 @@
-package com.example.oopkodu8;
+package com.example.oopiprojekt;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,6 +1,9 @@
+package com.example.oopkodu8;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;

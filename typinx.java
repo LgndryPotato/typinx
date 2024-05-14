@@ -1,4 +1,4 @@
-package com.example.oopkodu8;
+package com.example.oopiprojekt;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;

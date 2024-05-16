@@ -1,22 +1,17 @@
 package com.example.oopiprojekt;
 
-import javafx.animation.Animation;
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
+import com.example.oopiprojekt.sonanetist;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class typinx extends Application {
     private Label etteantudsona;
@@ -41,6 +36,21 @@ public class typinx extends Application {
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
 
+        Button startButton = new Button("Alusta mängu");
+        Button exitButton = new Button("Välju");
+
+        startButton.setOnAction(e -> startTypingGame(root));
+        exitButton.setOnAction(e -> primaryStage.close());
+
+        VBox menu = new VBox(10, startButton, exitButton);
+        menu.setAlignment(Pos.CENTER);
+
+        root.setCenter(menu);
+
+        primaryStage.show();
+    }
+
+    private void startTypingGame(BorderPane root) {
         etteantudsona = new Label();
         etteantudsona.setStyle("-fx-font-size: 24;");
         kasutajainput = new TextField();
@@ -53,44 +63,19 @@ public class typinx extends Application {
         StackPane.setAlignment(etteantudsona, Pos.CENTER);
         StackPane.setAlignment(kasutajainput, Pos.BOTTOM_CENTER);
 
-        root.setTop(createStatsLabel());
+        Button exitButton = new Button("Välju");
+        exitButton.setOnAction(e -> System.exit(0));
+
+        BorderPane topPane = new BorderPane();
+        topPane.setLeft(createStatsLabel());
+        topPane.setRight(exitButton);
+
+        root.setTop(topPane);
 
         StackPane centerPane = new StackPane();
         centerPane.getChildren().addAll(etteantudsona, kasutajainput);
         root.setCenter(centerPane);
 
-        Circle circle = new Circle(10, Color.BLACK);
-        root.getChildren().add(circle);
-
-        // Teekond paremalt vasakule
-        PathTransition pathTransitionRightToLeft = new PathTransition();
-        pathTransitionRightToLeft.setNode(circle);
-        pathTransitionRightToLeft.setDuration(Duration.seconds(5));
-        pathTransitionRightToLeft.setInterpolator(Interpolator.LINEAR);
-        pathTransitionRightToLeft.setCycleCount(Animation.INDEFINITE);
-        Path pathRightToLeft = new Path();
-        pathRightToLeft.getElements().add(new MoveTo(0, 50));
-        pathRightToLeft.getElements().add(new LineTo(800, 50));
-        pathTransitionRightToLeft.setPath(pathRightToLeft);
-
-        // Teekond vasakult paremale
-        PathTransition pathTransitionLeftToRight = new PathTransition();
-        pathTransitionLeftToRight.setNode(circle);
-        pathTransitionLeftToRight.setDuration(Duration.seconds(5));
-        pathTransitionLeftToRight.setInterpolator(Interpolator.LINEAR);
-        pathTransitionLeftToRight.setCycleCount(Animation.INDEFINITE);
-        Path pathLeftToRight = new Path();
-        pathLeftToRight.getElements().add(new MoveTo(800, 50));
-        pathLeftToRight.getElements().add(new LineTo(0, 50));
-        pathTransitionLeftToRight.setPath(pathLeftToRight);
-
-        // Käivitame paremalt vasakule liikumise
-        pathTransitionRightToLeft.play();
-
-        // Lisame ringile animatsiooni
-        primaryStage.show();
-
-        // Alustame mängu
         startGame();
     }
 

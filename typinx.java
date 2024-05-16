@@ -1,15 +1,12 @@
 package com.example.oopiprojekt;
 
-import com.example.oopiprojekt.sonanetist;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -36,21 +33,6 @@ public class typinx extends Application {
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
 
-        Button startButton = new Button("Alusta mängu");
-        Button exitButton = new Button("Välju");
-
-        startButton.setOnAction(e -> startTypingGame(root));
-        exitButton.setOnAction(e -> primaryStage.close());
-
-        VBox menu = new VBox(10, startButton, exitButton);
-        menu.setAlignment(Pos.CENTER);
-
-        root.setCenter(menu);
-
-        primaryStage.show();
-    }
-
-    private void startTypingGame(BorderPane root) {
         etteantudsona = new Label();
         etteantudsona.setStyle("-fx-font-size: 24;");
         kasutajainput = new TextField();
@@ -63,30 +45,25 @@ public class typinx extends Application {
         StackPane.setAlignment(etteantudsona, Pos.CENTER);
         StackPane.setAlignment(kasutajainput, Pos.BOTTOM_CENTER);
 
-        Button exitButton = new Button("Välju");
-        exitButton.setOnAction(e -> System.exit(0));
-
-        BorderPane topPane = new BorderPane();
-        topPane.setLeft(createStatsLabel());
-        topPane.setRight(exitButton);
-
-        root.setTop(topPane);
+        root.setTop(statsLabel());
 
         StackPane centerPane = new StackPane();
         centerPane.getChildren().addAll(etteantudsona, kasutajainput);
         root.setCenter(centerPane);
 
+        primaryStage.show();
+
         startGame();
     }
 
-    private Label createStatsLabel() {
+    private Label statsLabel() {
         Label statsLabel = new Label();
         statsLabel.setStyle("-fx-font-size: 14;");
-        updateStatsLabel(statsLabel);
+        uuendaStatse(statsLabel);
         return statsLabel;
     }
 
-    private void updateStatsLabel(Label statsLabel) {
+    private void uuendaStatse(Label statsLabel) {
         double accuracy = oigeidsonu / (double) (oigeidsonu + vigasedsonad) * 100;
         String stats = String.format("Täpsus: %.2f%% | WPM: %.2f", accuracy, wpm);
         statsLabel.setText(stats);
@@ -94,14 +71,14 @@ public class typinx extends Application {
 
     private void startGame() {
         praegunesona = sonanetist.valisuvasona();
-        displayWord(praegunesona);
+        sonaEkraanile(praegunesona);
         algusaeg = System.currentTimeMillis();
         viimaneuuendus = algusaeg;
     }
 
     private void kontrolli() {
-        long currentTime = System.currentTimeMillis();
-        double totalTime = (currentTime - algusaeg) / 60000.0;
+        long hetkeAeg = System.currentTimeMillis();
+        double kokkuAeg = (hetkeAeg - algusaeg) / 60000.0;
 
         String input = kasutajainput.getText().trim();
         if (input.equals(praegunesona)) {
@@ -114,18 +91,18 @@ public class typinx extends Application {
         }
         kasutajainput.clear();
         praegunesona = sonanetist.valisuvasona();
-        displayWord(praegunesona);
+        sonaEkraanile(praegunesona);
 
-        if (currentTime - viimaneuuendus >= 5000) {
-            wpm = kokkusonu / (totalTime / 5);
-            updateStatsLabel((Label) ((BorderPane) kasutajainput.getParent().getParent()).getTop());
+        if (hetkeAeg - viimaneuuendus >= 5000) {
+            wpm = kokkusonu / (kokkuAeg / 5);
+            uuendaStatse((Label) ((BorderPane) kasutajainput.getParent().getParent()).getTop());
             kokkusonu = 0;
-            viimaneuuendus = currentTime;
+            viimaneuuendus = hetkeAeg;
         }
     }
 
-    private void displayWord(String word) {
-        etteantudsona.setText(word);
+    private void sonaEkraanile(String sona) {
+        etteantudsona.setText(sona);
         etteantudsona.setTextFill(Color.BLACK);
     }
 }

@@ -3,7 +3,6 @@ package com.example.typinx2;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -11,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -22,7 +20,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Typinx extends Application {
     private Label etteantudsona;
@@ -43,8 +40,8 @@ public class Typinx extends Application {
     private int oigeidsonu = 0;
     private int vigasedsonad = 0;
     private Label statsLabel;
-    double wpm = 0;
-    double accuracy = 0;
+    private double wpm = 0;
+    private double accuracy = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -128,9 +125,9 @@ public class Typinx extends Application {
     }
 
     private void uuendaStatse() {
-        long currentTime = System.currentTimeMillis();
-        double totalMinutes = (currentTime - startAeg) / 60000.0;
-        wpm = sonuKokku / totalMinutes;
+        long praeguneAeg = System.currentTimeMillis();
+        double minuteidKokku = (praeguneAeg - startAeg) / 60000.0;
+        wpm = sonuKokku / minuteidKokku;
         accuracy = oigeidsonu / (double) (oigeidsonu + vigasedsonad) * 100;
         String stats = String.format("WPM: %.2f | Accuracy: %.2f%% | Player Points: %d | Robot Points: %d", wpm, accuracy, mangijaPunktid, robotiPunktid);
 
@@ -138,11 +135,11 @@ public class Typinx extends Application {
         try {
             List<String> lines = Files.readAllLines(Paths.get("tulemused.txt"));
             if (lines.size() >= 4) {
-                String lastLine = lines.get(lines.size() - 1);
-                String secondLastLine = lines.get(lines.size() - 2);
-                String thirdLastLine = lines.get(lines.size() - 3);
-                String fourthLastLine = lines.get(lines.size() - 4);
-                stats += "\nEelmise mängu tulemused:\n" + fourthLastLine + "\n" + thirdLastLine + "\n" + secondLastLine + "\n" + lastLine;
+                String viiamne = lines.get(lines.size() - 1);
+                String eelviimane = lines.get(lines.size() - 2);
+                String eeleelviimane = lines.get(lines.size() - 3);
+                String eeleeleelviimane = lines.get(lines.size() - 4);
+                stats += "\nEelmise mängu tulemused:\n" + eeleeleelviimane + "\n" + eeleelviimane + "\n" + eelviimane + "\n" + viiamne;
             }
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file.");
@@ -151,7 +148,6 @@ public class Typinx extends Application {
 
         statsLabel.setText(stats);
     }
-
 
     private void startGame() {
         algusaeg = System.currentTimeMillis();
@@ -201,14 +197,13 @@ public class Typinx extends Application {
         etteantudsona.setTextFill(Color.BLACK);
     }
 
-
     @Override
     public void stop() {
         try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
             writer.println("Mängija punkte: " + mangijaPunktid);
             writer.println("Roboti punkte: " + robotiPunktid);
-            writer.println("WPM: " + wpm);
-            writer.println("Tapsus: " + accuracy);
+            writer.println("WPM: " + Math.round(wpm));
+            writer.println("Täpsus: " + accuracy);
         } catch (IOException e) {
             System.out.println("An error occurred while writing to the file.");
             e.printStackTrace();
